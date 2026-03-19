@@ -1185,3 +1185,9 @@ config HIST_TRIGGERS_DEBUG
 source "kernel/trace/rv/Kconfig"
 
 endif # FTRACE
+
+config SKTRC
+	bool "SKTRC - Simple Kernel Trace"
+	default y
+	help
+	  Check https://github.com/sidneypepo/sktrc.

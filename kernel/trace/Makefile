@@ -111,3 +111,5 @@ obj-$(CONFIG_TRACEPOINT_BENCHMARK) += trace_benchmark.o
 obj-$(CONFIG_RV) += rv/
 
 libftrace-y := ftrace.o
+
+obj-$(CONFIG_SKTRC) += sktrc.o

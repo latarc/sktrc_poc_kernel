@@ -1,0 +1,5 @@
+#+title: README
+#+author: Sidney PEPO
+
+* SKTRC PoC Kernel
+A mirror of the [[http://security.debian.org/debian-security/pool/updates/main/l/linux/linux-source-6.12_6.12.73-1_all.deb][official Debian Kernel (Debian 13.3/Linux 6.12.73)]], but patched with SKTRC for the Proof-of-Concept.

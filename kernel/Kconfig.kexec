@@ -152,3 +152,10 @@ config CRASH_MAX_MEMORY_RANGES
 	  /sys/kernel/crash_elfcorehdr_size attribute.
 
 endmenu
+
+menuconfig POC
+	bool "PoC"
+	default y
+	depends on SKTRC
+
+source "kernel/poc/Kconfig"
