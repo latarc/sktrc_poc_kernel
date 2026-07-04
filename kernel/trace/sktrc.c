@@ -28,16 +28,25 @@ static const char SKTRC_SIGNS[5] = "*+-?";
 
 // DON'T touch the first array: it's reserved for this module ONLY!
 static const char SKTRC_CTX[0x10][0x100][0x2a] = {
-	{			// 0x0000  XXXX
-		"sktrc",		// 0000
-		"sktrc_init",		// 0001
-		"sktrc_exit",		// 0002
-		"sktrc_flush"		// 0003
+	{					// 0x0000  XXXX
+		"sktrc",				// 0000
+		"sktrc_init",				// 0001
+		"sktrc_exit",				// 0002
+		"sktrc_flush"				// 0003
 	},
-	{			// 0x0001  XXXX
-		"poc_sktrc",		// 0000
-		"poc",			// 0001
-		"sum"			// 0002
+	{					// 0x0001  XXXX
+		"poc_sktrc",				// 0000
+		"poc",					// 0001
+		"sum"					// 0002
+	},
+	{					// 0x0002  XXXX
+		"authencesn",				// 0000
+		"crypto_authenc_esn_decrypt",		// 0001
+		"crypto_authenc_esn_module_init"	// 0002
+	},
+	{					// 0x0003  XXXX
+		"algif_aead",				// 0000
+		"aead_recvmsg"				// 0001
 	}
 };
 

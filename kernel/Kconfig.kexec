@@ -153,9 +153,9 @@ config CRASH_MAX_MEMORY_RANGES
 
 endmenu
 
-menuconfig POC
-	bool "PoC"
-	default y
+menuconfig POC_SUM
+	bool "PoC sum"
+	default n
 	depends on SKTRC
 
 source "kernel/poc/Kconfig"

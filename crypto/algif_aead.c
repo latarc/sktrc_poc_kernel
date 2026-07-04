@@ -36,6 +36,10 @@
 #include <linux/net.h>
 #include <net/sock.h>
 
+//#define CREATE_TRACE_POINTS
+#include "poc_copy_fail.h"
+#include <trace/sktrc.h>
+
 struct aead_tfm {
 	struct crypto_aead *aead;
 	struct crypto_sync_skcipher *null_tfm;
@@ -329,6 +333,8 @@ static int aead_recvmsg(struct socket *sock, struct msghdr *msg,
 	int ret = 0;
 
 	lock_sock(sk);
+	trace_receiving(0);
+	sktrc(SKTRC_HASH(0, 0, 3, 1), "Receiving payload fragment...");
 	while (msg_data_left(msg)) {
 		int err = _aead_recvmsg(sock, msg, ignored, flags);
 

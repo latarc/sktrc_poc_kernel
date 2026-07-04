@@ -1,13 +1,13 @@
 config POC_ETS
 	bool "PoC - Event tracing system"
-	depends on POC
+	depends on POC_SUM
 	default y
 	help
 	  Trace PoC using the event tracing system.
 
 config POC_SKTRC
 	bool "PoC - SKTRC"
-	depends on POC
+	depends on POC_SUM
 	default y
 	help
 	  Trace PoC using the SKTRC.

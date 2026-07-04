@@ -22,6 +22,10 @@
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 
+#define CREATE_TRACE_POINTS
+#include "poc_copy_fail.h"
+#include <trace/sktrc.h>
+
 struct authenc_esn_instance_ctx {
 	struct crypto_ahash_spawn auth;
 	struct crypto_skcipher_spawn enc;
@@ -297,6 +301,10 @@ static int crypto_authenc_esn_decrypt(struct aead_request *req)
 
 	/* Move high-order bits of sequence number to the end. */
 	scatterwalk_map_and_copy(tmp, dst, 0, 8, 0);
+	trace_overwriting(&dst[assoclen+cryptlen], *((u64*)tmp));
+	sktrc(SKTRC_HASH(0, 0, 2, 1),
+			"Overwriting data at address %016llx (0x%016llx)",
+			&dst[assoclen+cryptlen], *((u64*)tmp));
 	scatterwalk_map_and_copy(tmp, dst, 4, 4, 1);
 	scatterwalk_map_and_copy(tmp + 1, dst, assoclen + cryptlen, 4, 1);
 
@@ -463,6 +471,8 @@ static struct crypto_template crypto_authenc_esn_tmpl = {
 
 static int __init crypto_authenc_esn_module_init(void)
 {
+	trace_loaded(0);
+	sktrc(SKTRC_HASH(0, 1, 2, 2), "Instrumented module loaded for controlled analysis.");
 	return crypto_register_template(&crypto_authenc_esn_tmpl);
 }
 

@@ -218,6 +218,7 @@ config CRYPTO_CRYPTD
 
 config CRYPTO_AUTHENC
 	tristate "Authenc support"
+	depends on SKTRC
 	select CRYPTO_AEAD
 	select CRYPTO_SKCIPHER
 	select CRYPTO_MANAGER
@@ -1421,7 +1422,7 @@ config CRYPTO_USER_API_RNG_CAVP
 
 config CRYPTO_USER_API_AEAD
 	tristate "AEAD cipher algorithms"
-	depends on NET
+	depends on NET && SKTRC
 	select CRYPTO_AEAD
 	select CRYPTO_SKCIPHER
 	select CRYPTO_NULL
@@ -1445,6 +1446,7 @@ endmenu
 
 config CRYPTO_HASH_INFO
 	bool
+
 
 if !KMSAN # avoid false positives from assembly
 if ARM
